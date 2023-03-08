@@ -12,7 +12,9 @@
     "nuxt": "^3.2.3"
   },
   "dependencies": {
+    "@tabler/icons-vue": "^2.8.0",
     "@vueuse/nuxt": "^9.13.0",
-    "nanoid": "^4.0.1"
+    "nanoid": "^4.0.1",
+    "vuedraggable": "^4.1.0"
   }
 }

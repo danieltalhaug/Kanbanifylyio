@@ -1,9 +1,10 @@
 <script setup lang="ts">
 // Libs
 import { nanoid } from 'nanoid';
+import draggable from 'vuedraggable';
 
 // Components & Types
-import type { Column } from '~/types';
+import type { Column, Task } from '~/types';
 import KanBanColumn from './KanbanColumn.vue';
 
 const columns = ref<Column[]>([
@@ -37,18 +38,29 @@ const columns = ref<Column[]>([
 </script>
 
 <template>
-    <div class="flex gap-2 overflow-x-auto items-start h-full">
-        <KanBanColumn
-            v-for="column in columns" :key="column.id"
-            :title="column.title"
-        >
-            <KanbanTask
-                v-for="task in column.tasks"
-                :key="task.id"
-                :task="task"
+    <draggable
+        v-model="columns"
+        :animation="100"
+        handle=".drag-handle"
+        group="columns"
+        item-key="id"
+        class="flex gap-2 overflow-x-auto items-start h-full"
+    >
+    <template #item="{element: column}: {element: Column}">
+        <KanBanColumn :title="column.title">
+            <draggable
+                v-model="column.tasks"
+                :animation="100"
+                handle=".drag-handle"
+                group="tasks"
+                item-key="id"
+                class="flex flex-col gap-4"
             >
-                {{ task.title }}
-            </KanbanTask>
+                <template #item="{element: task}: {element: Task}">
+                    <KanbanTask :task="task" />
+                </template>
+            </draggable>
         </KanBanColumn>
-    </div>
+    </template>
+    </draggable>
 </template>

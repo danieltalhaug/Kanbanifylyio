@@ -8,8 +8,11 @@ const props = defineProps<{
 
 <template>
     <div class="flex flex-col gap-2 bg-slate-900 dark:bg-slate-50 p-2 rounded w-full">
-        <h4 class="text-base truncate">
-            {{ task.title }}
-        </h4>
+        <header class="flex justify-between">
+            <h4 class="text-base truncate leading-9">
+                {{ task.title }}
+            </h4>
+            <KanbanDragHandle />
+        </header>
     </div>
 </template>

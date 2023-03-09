@@ -60,7 +60,10 @@ const isAltActive = useKeyModifier('Alt');
                 class="flex flex-col gap-4"
             >
                 <template #item="{element: task}: {element: Task}">
-                    <KanbanTask :task="task" />
+                    <KanbanTask
+                        :task="task"
+                        @delete="column.tasks = column.tasks.filter(task => task.id !== $event)"
+                    />
                 </template>
             </draggable>
         </KanBanColumn>

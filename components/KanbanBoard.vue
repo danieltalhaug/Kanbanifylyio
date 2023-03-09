@@ -35,6 +35,9 @@ const columns = ref<Column[]>([
     {id: nanoid(), title: 'Complete', tasks: [] },
 ]);
 
+// For enabling cloning of a task
+const isAltActive = useKeyModifier('Alt');
+
 </script>
 
 <template>
@@ -52,7 +55,7 @@ const columns = ref<Column[]>([
                 v-model="column.tasks"
                 :animation="100"
                 handle=".drag-handle"
-                group="tasks"
+                :group="{name: 'tasks', pull: isAltActive ? 'clone' : true}"
                 item-key="id"
                 class="flex flex-col gap-4"
             >

@@ -3,3 +3,9 @@
     <KanbanBoard />
   </main>
 </template>
+
+<style>
+button {
+  @apply p-2 text-slate-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 transition rounded;
+}
+</style>

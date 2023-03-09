@@ -19,7 +19,7 @@ const props = defineProps({
         </section>
 
         <footer class="self-end">
-            <button class="text-slate-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 transition">+ Add task</button>
+            <button>+ Add task</button>
         </footer>
     </article>
 </template>

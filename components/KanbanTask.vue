@@ -16,3 +16,9 @@ const props = defineProps<{
         </header>
     </div>
 </template>
+
+<style scoped>
+.sortable-ghost {
+    @apply bg-slate-100 dark:bg-slate-800 border-2 border-slate-500 border-dashed;
+}
+</style>

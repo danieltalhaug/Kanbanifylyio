@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { IconPlus } from '@tabler/icons-vue';
+
 const props = defineProps({
     title: String,
 });
@@ -19,7 +21,13 @@ const props = defineProps({
         </section>
 
         <footer class="self-end">
-            <button>+ Add task</button>
+            <button class="flex gap-2 justify-center">
+                <IconPlus
+                    :size="20"
+                    stroke-width="2"
+                />
+                Add task
+            </button>
         </footer>
     </article>
 </template>

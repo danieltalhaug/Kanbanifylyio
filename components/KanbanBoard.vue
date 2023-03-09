@@ -38,6 +38,9 @@ const columns = ref<Column[]>([
 // For enabling cloning of a task
 const isAltActive = useKeyModifier('Alt');
 
+const test = () => {
+    console.log('test');
+}
 </script>
 
 <template>
@@ -50,7 +53,10 @@ const isAltActive = useKeyModifier('Alt');
         class="flex gap-2 overflow-x-auto items-start h-full"
     >
     <template #item="{element: column}: {element: Column}">
-        <KanBanColumn :title="column.title">
+        <KanBanColumn
+            v-model:title="column.title"
+            :title="column.title"
+        >
             <draggable
                 v-model="column.tasks"
                 :animation="100"

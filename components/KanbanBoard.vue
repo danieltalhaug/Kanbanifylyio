@@ -12,55 +12,53 @@ import KanbanColumn from './KanbanColumn.vue';
  * Columns
  */
 const defaultColumn: Column = {
-        id: nanoid(),
+    id: nanoid(),
     title: 'New column',
     tasks: [],
-            }
-        ],
-    },
-    {id: nanoid(), title: 'Selected for Dev', tasks: [] },
-    {id: nanoid(), title: 'In progress', tasks: [] },
-    {id: nanoid(), title: 'QA', tasks: [] },
-    {id: nanoid(), title: 'Complete', tasks: [] },
-]);
+}
+// Columns data persisted in LocalStorage
+const columns = useLocalStorage<Column[]>('KanbanData', []);
 
+function addColumn() {
+    columns.value.push(defaultColumn);
+}
 // For enabling cloning of a task
 const isAltActive = useKeyModifier('Alt');
 </script>
 
 <template>
     <div class="flex gap-2 h-full">
-    <draggable
-        v-model="columns"
-        :animation="100"
-        handle=".drag-handle"
-        group="columns"
-        item-key="id"
-        class="flex gap-2 overflow-x-auto items-start h-full"
-    >
-    <template #item="{element: column}: {element: Column}">
-        <KanbanColumn
-            v-model:title="column.title"
-            :title="column.title"
+        <draggable
+            v-model="columns"
+            :animation="100"
+            handle=".drag-handle"
+            group="columns"
+            item-key="id"
+            class="flex gap-2 overflow-x-auto items-start h-full"
         >
-            <draggable
-                v-model="column.tasks"
-                :animation="100"
-                handle=".drag-handle"
-                :group="{name: 'tasks', pull: isAltActive ? 'clone' : true}"
-                item-key="id"
-                class="flex flex-col gap-4"
+        <template #item="{element: column}: {element: Column}">
+            <KanbanColumn
+                v-model:title="column.title"
+                :title="column.title"
             >
-                <template #item="{element: task}: {element: Task}">
-                    <KanbanTask
-                        :task="task"
-                        @delete="column.tasks = column.tasks.filter(task => task.id !== $event)"
-                    />
-                </template>
-            </draggable>
-        </KanbanColumn>
-    </template>
-    </draggable>
+                <draggable
+                    v-model="column.tasks"
+                    :animation="100"
+                    handle=".drag-handle"
+                    :group="{name: 'tasks', pull: isAltActive ? 'clone' : true}"
+                    item-key="id"
+                    class="flex flex-col gap-4"
+                >
+                    <template #item="{element: task}: {element: Task}">
+                        <KanbanTask
+                            :task="task"
+                            @delete="column.tasks = column.tasks.filter(task => task.id !== $event)"
+                        />
+                    </template>
+                </draggable>
+            </KanbanColumn>
+        </template>
+        </draggable>
 
         <button
             class="flex gap-2 h-fit whitespace-nowrap"

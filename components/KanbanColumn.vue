@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { IconPlus } from '@tabler/icons-vue';
+import { ID } from '@/types/index';
 
-const props = defineProps({
+const props = defineProps<{
     title: String,
-});
+    columnId: ID,
+}>();
 
-const emit = defineEmits(['update:title'])
+const emit = defineEmits(['update:title', 'addTask'])
 
 function updateTitle(title: String) {
     emit('update:title', title)
@@ -31,7 +33,10 @@ function updateTitle(title: String) {
         </section>
 
         <footer class="self-end">
-            <button class="flex gap-2 justify-center">
+            <button
+                class="flex gap-2 justify-center"
+                @click="$emit('addTask', columnId)"
+            >
                 <IconPlus
                     :size="20"
                     stroke-width="2"

@@ -22,8 +22,23 @@ const columns = useLocalStorage<Column[]>('KanbanData', []);
 function addColumn() {
     columns.value.push(defaultColumn);
 }
+
+/**
+ * Tasks
+ */
 // For enabling cloning of a task
 const isAltActive = useKeyModifier('Alt');
+
+function addNewTask(columnId: String) {
+    const column = columns.value.find(column => column.id === columnId);
+    const defaultTask: Task = {
+        id: nanoid(),
+        title: 'New task',
+        createdAt: new Date(),
+    }
+
+    column?.tasks.push(defaultTask);
+}
 </script>
 
 <template>
@@ -40,6 +55,8 @@ const isAltActive = useKeyModifier('Alt');
             <KanbanColumn
                 v-model:title="column.title"
                 :title="column.title"
+                :column-id="column.id"
+                @add-task="addNewTask"
             >
                 <draggable
                     v-model="column.tasks"

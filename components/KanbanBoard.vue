@@ -65,7 +65,7 @@ function addNewTask(columnId: String) {
                     handle=".drag-handle"
                     :group="{name: 'tasks', pull: isAltActive ? 'clone' : true}"
                     item-key="id"
-                    class="flex flex-col gap-4"
+                    class="flex flex-col gap-4 h-full"
                 >
                     <template #item="{element: task}: {element: Task}">
                         <KanbanTask

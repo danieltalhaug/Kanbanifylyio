@@ -5,7 +5,11 @@ const props = defineProps({
     title: String,
 });
 
-defineEmits(['update:title'])
+const emit = defineEmits(['update:title'])
+
+function updateTitle(title: String) {
+    emit('update:title', title)
+}
 
 </script>
 
@@ -15,8 +19,8 @@ defineEmits(['update:title'])
             <input
                 :value="title"
                 type="text"
-                class="bg-transparent flex-grow focus=border-2 border-t-1 text-slate-900 dark:text-slate-50"
-                @keyup.enter="$emit('update:title', ($event.target as HTMLInputElement).value)"
+                @keyup.enter="updateTitle(($event.target as HTMLInputElement).value)"
+                @blur="updateTitle(($event.target as HTMLInputElement).value)"
             >
             <KanbanDragHandle />
         </header>

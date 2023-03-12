@@ -5,9 +5,9 @@ import draggable from 'vuedraggable';
 
 // Components & Types
 import type { Column, Task } from '~/types';
-import KanBanColumn from './KanbanColumn.vue';
+import KanbanColumn from './KanbanColumn.vue';
 
-const columns = ref<Column[]>([
+const columns = useLocalStorage<Column[]>('data', [
     {
         id: nanoid(),
         title: 'Backlog',
@@ -49,7 +49,7 @@ const isAltActive = useKeyModifier('Alt');
         class="flex gap-2 overflow-x-auto items-start h-full"
     >
     <template #item="{element: column}: {element: Column}">
-        <KanBanColumn
+        <KanbanColumn
             v-model:title="column.title"
             :title="column.title"
         >
@@ -68,7 +68,7 @@ const isAltActive = useKeyModifier('Alt');
                     />
                 </template>
             </draggable>
-        </KanBanColumn>
+        </KanbanColumn>
     </template>
     </draggable>
 </template>

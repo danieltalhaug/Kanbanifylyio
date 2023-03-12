@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Task, ID } from '@/types'
-import { emit } from 'process';
 
 const props = defineProps<{
     task: Task,

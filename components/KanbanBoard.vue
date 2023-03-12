@@ -50,7 +50,7 @@ function addNewTask(columnId: String) {
             handle=".drag-handle"
             group="columns"
             item-key="id"
-            class="flex gap-2 overflow-x-auto items-start h-full"
+            class="flex gap-2 overflow-x-auto items-start h-full grow"
         >
         <template #item="{element: column}: {element: Column}">
             <KanbanColumn

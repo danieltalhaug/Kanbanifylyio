@@ -5,27 +5,16 @@ import draggable from 'vuedraggable';
 
 // Components & Types
 import type { Column, Task } from '~/types';
+import { IconPlus } from '@tabler/icons-vue';
 import KanbanColumn from './KanbanColumn.vue';
 
-const columns = useLocalStorage<Column[]>('data', [
-    {
+/**
+ * Columns
+ */
+const defaultColumn: Column = {
         id: nanoid(),
-        title: 'Backlog',
-        tasks: [
-            {
-                id: nanoid(),
-                title: 'Create marketing landing page',
-                createdAt: new Date(),
-            },
-            {
-                id: nanoid(),
-                title: 'Develop cool new feature',
-                createdAt: new Date(),
-            },
-            {
-                id: nanoid(),
-                title: 'Fix navigation bug',
-                createdAt: new Date(),
+    title: 'New column',
+    tasks: [],
             }
         ],
     },
@@ -40,6 +29,7 @@ const isAltActive = useKeyModifier('Alt');
 </script>
 
 <template>
+    <div class="flex gap-2 h-full">
     <draggable
         v-model="columns"
         :animation="100"
@@ -71,4 +61,17 @@ const isAltActive = useKeyModifier('Alt');
         </KanbanColumn>
     </template>
     </draggable>
+
+        <button
+            class="flex gap-2 h-fit whitespace-nowrap"
+            @click="addColumn"
+        >
+            <IconPlus
+                class="self-center"
+                :size="20"
+                stroke-width="2"
+            />
+            Column
+        </button>
+    </div>
 </template>

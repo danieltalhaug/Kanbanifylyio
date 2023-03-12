@@ -6,6 +6,6 @@
 
 <style>
 button {
-  @apply p-2 text-slate-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 transition rounded;
+  @apply p-2 text-slate-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 transition rounded focus:outline outline-2 outline-purple-500 rounded;
 }
 </style>

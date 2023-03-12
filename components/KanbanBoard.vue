@@ -37,10 +37,6 @@ const columns = ref<Column[]>([
 
 // For enabling cloning of a task
 const isAltActive = useKeyModifier('Alt');
-
-const test = () => {
-    console.log('test');
-}
 </script>
 
 <template>

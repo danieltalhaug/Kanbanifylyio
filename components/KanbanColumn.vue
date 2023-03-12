@@ -19,6 +19,7 @@ function updateTitle(title: String) {
             <input
                 :value="title"
                 type="text"
+                class="bg-transparent flex-grow focus=border-2 border-t-1 text-slate-900 dark:text-slate-50 focus:outline outline-2 outline-purple-500 rounded"
                 @keyup.enter="updateTitle(($event.target as HTMLInputElement).value)"
                 @blur="updateTitle(($event.target as HTMLInputElement).value)"
             >

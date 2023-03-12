@@ -11,15 +11,16 @@ import KanbanColumn from './KanbanColumn.vue';
 /**
  * Columns
  */
-const defaultColumn: Column = {
-    id: nanoid(),
-    title: 'New column',
-    tasks: [],
-}
 // Columns data persisted in LocalStorage
 const columns = useLocalStorage<Column[]>('KanbanData', []);
 
-function addColumn() {
+function addNewColumn() {
+    const defaultColumn: Column = {
+        id: nanoid(),
+        title: 'New column',
+        tasks: [],
+    }
+
     columns.value.push(defaultColumn);
 }
 
@@ -79,7 +80,7 @@ function addNewTask(columnId: String) {
 
         <button
             class="flex gap-2 h-fit whitespace-nowrap"
-            @click="addColumn"
+            @click="addNewColumn"
         >
             <IconPlus
                 class="self-center"

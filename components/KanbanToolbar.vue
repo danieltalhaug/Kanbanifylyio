@@ -5,6 +5,10 @@ defineProps({
         type: Boolean,
         default: false,
     },
+    isPaintable: {
+        type: Boolean,
+        default: false,
+    },
     isDuplicatable: {
         type: Boolean,
         default: false,
@@ -19,7 +23,7 @@ defineProps({
     },
 });
 
-defineEmits(['add', 'toggle-expand', 'paint', 'duplicate', 'delete']);
+defineEmits(['add', 'toggle-expand', 'change-color', 'duplicate', 'delete']);
 </script>
 
 <template>
@@ -34,7 +38,15 @@ defineEmits(['add', 'toggle-expand', 'paint', 'duplicate', 'delete']);
                     stroke-width="2"
                 />
             </button>
+            <button
+                v-if="isPaintable"
+                @click="$emit('change-color')"
+            >
+                <IconPalette
+                    :size="20"
                 stroke-width="2"
+                />
+            </button>
             <button
                 v-if="isDuplicatable"
                 @click="$emit('duplicate')"

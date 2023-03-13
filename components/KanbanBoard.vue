@@ -5,6 +5,7 @@ import draggable from 'vuedraggable';
 
 // Components & Types
 import type { Column, Task, ID } from '~/types';
+import { Colors, kanbanColors } from './common/colors';
 import { IconPlus } from '@tabler/icons-vue';
 import KanbanColumn from './KanbanColumn.vue';
 
@@ -19,6 +20,7 @@ function addNewColumn() {
         id: nanoid(),
         title: 'New column',
         tasks: [],
+        color: kanbanColors[Colors.SLATE],
     }
 
     columns.value.push(defaultColumn);
@@ -33,6 +35,20 @@ function doDuplicateColumn(columnId: ID) {
         id: nanoid(),
         title: duplicate.title + ' (Copy)'
     });
+}
+
+function doChangeColumnColor(columnId: ID) {
+    const column = columns.value.find(col => col.id === columnId);
+    const columnColor = column?.color;
+    const columnColorIndex = kanbanColors.findIndex(color => color === columnColor);
+
+    if (column) {
+        if ((kanbanColors.length -1) === columnColorIndex) {
+            column.color = kanbanColors[0];
+        } else {
+            column.color = kanbanColors[columnColorIndex + 1];
+        }
+    }
 }
 
 function doDeleteColumn(columnId: ID) {
@@ -74,8 +90,10 @@ function addNewTask(columnId: String) {
                 v-model:title="column.title"
                 :title="column.title"
                 :column-id="column.id"
+                :color="column.color"
                 @add-task="addNewTask"
                 @duplicate-column="doDuplicateColumn"
+                @change-column-color="doChangeColumnColor"
                 @delete-column="doDeleteColumn"
             >
                 <draggable

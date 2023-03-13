@@ -33,7 +33,7 @@ const borderColor = computed(() => {
 </script>
 
 <template>
-    <article class="flex flex-col bg-slate-100 dark:bg-slate-800 p-4 rounded min-w-[300px] w-96 h-full">
+    <article class="flex flex-col p-4 min-w-[300px] w-96 border-x border-slate-200 dark:border-slate-700 h-full">
         <header :class="['flex', 'flex-col', 'border-solid', 'border-b-4', 'pb-4', borderColor]">
             <KanbanToolbar
                 :is-addable="true"

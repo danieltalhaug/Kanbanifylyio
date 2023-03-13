@@ -89,13 +89,14 @@ function addNewTask(columnId: String) {
             Column
         </button>
     </header>
+    <div class="flex min-h-[94%]">
         <draggable
             v-model="columns"
             :animation="100"
             handle=".drag-handle"
             group="columns"
             item-key="id"
-            class="flex gap-2 overflow-x-auto items-start h-full grow"
+            class="flex overflow-x-auto items-start grow"
         >
         <template #item="{element: column}: {element: Column}">
             <KanbanColumn
@@ -127,17 +128,5 @@ function addNewTask(columnId: String) {
             </KanbanColumn>
         </template>
         </draggable>
-
-        <button
-            class="flex gap-2 h-fit whitespace-nowrap"
-            @click="addNewColumn"
-        >
-            <IconPlus
-                class="self-center"
-                :size="20"
-                stroke-width="2"
-            />
-            Column
-        </button>
     </div>
 </template>

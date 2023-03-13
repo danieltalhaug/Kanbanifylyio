@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid';
 import draggable from 'vuedraggable';
 
 // Components & Types
-import type { Column, Task } from '~/types';
+import type { Column, Task, ID } from '~/types';
 import { IconPlus } from '@tabler/icons-vue';
 import KanbanColumn from './KanbanColumn.vue';
 
@@ -22,6 +22,12 @@ function addNewColumn() {
     }
 
     columns.value.push(defaultColumn);
+}
+
+function doDeleteColumn(columnId: ID) {
+    const index = columns.value.findIndex(col => col.id === columnId);
+
+    columns.value.splice(index, 1);
 }
 
 /**
@@ -58,6 +64,7 @@ function addNewTask(columnId: String) {
                 :title="column.title"
                 :column-id="column.id"
                 @add-task="addNewTask"
+                @delete-column="doDeleteColumn"
             >
                 <draggable
                     v-model="column.tasks"

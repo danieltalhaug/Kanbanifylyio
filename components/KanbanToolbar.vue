@@ -13,6 +13,10 @@ defineProps({
         type: Boolean,
         default: true,
     },
+    isDeletable: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 defineEmits(['add', 'toggle-expand', 'paint', 'copy', 'delete']);
@@ -41,5 +45,14 @@ defineEmits(['add', 'toggle-expand', 'paint', 'copy', 'delete']);
                 />
             </button>
         </span>
+        <button
+            v-if="isDeletable"
+            @click="$emit('delete')"
+        >
+            <IconX
+                :size="20"
+                stroke-width="2"
+            />
+        </button>
     </div>
 </template>

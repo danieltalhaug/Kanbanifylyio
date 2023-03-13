@@ -7,7 +7,11 @@ const props = defineProps<{
     columnId: ID,
 }>();
 
-const emit = defineEmits(['update:title', 'addTask'])
+const emit = defineEmits<{
+    (e: 'update:title', payload: String) : void,
+    (e: 'addTask', payload: ID) : void,
+    (e: 'deleteColumn', payload: ID) : void,
+}>();
 
 function updateTitle(title: String) {
     emit('update:title', title)
@@ -21,7 +25,9 @@ function updateTitle(title: String) {
             <KanbanToolbar
                 :is-addable="true"
                 :is-movable="true"
+                :is-deletable="true"
                 @add="$emit('addTask', columnId)"
+                @delete="$emit('deleteColumn', columnId)"
             />
             <input
                 :value="title"

@@ -76,7 +76,19 @@ function addNewTask(columnId: String) {
 </script>
 
 <template>
-    <div class="flex gap-2 h-full">
+    <header class="flex justify-end p-4 border-b border-slate-500">
+        <button
+            class="flex gap-2 h-fit whitespace-nowrap"
+            @click="addNewColumn"
+        >
+            <IconPlus
+                class="self-center"
+                :size="20"
+                stroke-width="2"
+            />
+            Column
+        </button>
+    </header>
         <draggable
             v-model="columns"
             :animation="100"

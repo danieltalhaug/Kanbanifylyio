@@ -91,6 +91,7 @@ function addNewTask(columnId: String) {
                 :title="column.title"
                 :column-id="column.id"
                 :color="column.color"
+                :task-count="column.tasks.length"
                 @add-task="addNewTask"
                 @duplicate-column="doDuplicateColumn"
                 @change-column-color="doChangeColumnColor"

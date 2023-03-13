@@ -6,6 +6,10 @@ const props = defineProps<{
     title: String,
     columnId: ID,
     color: Color,
+    taskCount: {
+        type: Number,
+        default: 0,
+    },
 }>();
 
 const emit = defineEmits<{
@@ -45,10 +49,13 @@ const borderColor = computed(() => {
             <input
                 :value="title"
                 type="text"
-                class="bg-transparent flex-grow focus=border-2 border-t-1 text-slate-900 dark:text-slate-50 focus:outline outline-2 outline-purple-500 rounded"
+                class="py-1 text-lg bg-transparent flex-grow focus=border-2 border-t-1 text-slate-900 dark:text-slate-50 focus:outline outline-2 outline-purple-500 rounded truncate"
                 @keyup.enter="updateTitle(($event.target as HTMLInputElement).value)"
                 @blur="updateTitle(($event.target as HTMLInputElement).value)"
             >
+            <p class="text-sm text-slate-600 dark:text-slate-300">
+                <span>Tasks: </span>{{ taskCount }}
+            </p>
         </header>
 
         <section class="flex flex-col gap-4 mt-8 grow">

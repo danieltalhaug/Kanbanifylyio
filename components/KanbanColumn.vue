@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { IconPlus } from '@tabler/icons-vue';
 import { ID, Color } from '@/types/index';
+import KanbanTaskEmptyState from './KanbanTaskEmptyState.vue';
 
 const props = defineProps<{
     title: String,
@@ -56,7 +57,11 @@ const borderColor = computed(() => {
             </p>
         </header>
 
-        <section class="flex flex-col gap-4 mt-8 grow">
+        <section class="flex flex-col gap-4 mt-8 grow relative">
+            <KanbanTaskEmptyState
+                v-if="!taskCount"
+                class="absolute top-[30%]"
+            />
             <slot />
         </section>
 

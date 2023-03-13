@@ -41,6 +41,7 @@ const borderColor = computed(() => {
                 :is-deletable="true"
                 :is-duplicatable="true"
                 :is-paintable="true"
+                context="column"
                 @add="$emit('addTask', columnId)"
                 @duplicate="$emit('duplicateColumn', columnId)"
                 @change-color="$emit('changeColumnColor', columnId)"

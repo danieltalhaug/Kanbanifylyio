@@ -21,6 +21,13 @@ defineProps({
         type: Boolean,
         default: false,
     },
+    context: {
+        type: String,
+        required: true,
+        validator(val: string) {
+            return ['column', 'task'].includes(val);
+        },
+    }
 });
 
 defineEmits(['add', 'toggle-expand', 'change-color', 'duplicate', 'delete']);
@@ -31,6 +38,7 @@ defineEmits(['add', 'toggle-expand', 'change-color', 'duplicate', 'delete']);
         <span>
             <button
                 v-if="isAddable"
+                :title="`Add new ${context}`"
                 @click="$emit('add')"
             >
                 <IconPlus
@@ -40,6 +48,7 @@ defineEmits(['add', 'toggle-expand', 'change-color', 'duplicate', 'delete']);
             </button>
             <button
                 v-if="isPaintable"
+                :title="`Change colour of ${context}`"
                 @click="$emit('change-color')"
             >
                 <IconPalette
@@ -49,6 +58,7 @@ defineEmits(['add', 'toggle-expand', 'change-color', 'duplicate', 'delete']);
             </button>
             <button
                 v-if="isDuplicatable"
+                :title="`Duplicate ${context}`"
                 @click="$emit('duplicate')"
             >
                 <IconCopy
@@ -58,6 +68,7 @@ defineEmits(['add', 'toggle-expand', 'change-color', 'duplicate', 'delete']);
             </button>
             <button
                 v-if="isDraggable"
+                :title="`Move ${context}`"
                 class="drag-handle cursor-move"
             >
                 <IconDragDrop
@@ -68,6 +79,7 @@ defineEmits(['add', 'toggle-expand', 'change-color', 'duplicate', 'delete']);
         </span>
         <button
             v-if="isDeletable"
+            :title="`Delete ${context}`"
             @click="$emit('delete')"
         >
             <IconX

@@ -6,10 +6,7 @@ const props = defineProps<{
     title: String,
     columnId: ID,
     color: Color,
-    taskCount: {
-        type: Number,
-        default: 0,
-    },
+    taskCount: number,
 }>();
 
 const emit = defineEmits<{

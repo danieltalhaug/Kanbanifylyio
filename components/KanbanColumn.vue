@@ -16,8 +16,13 @@ function updateTitle(title: String) {
 </script>
 
 <template>
-    <article class="flex flex-col bg-slate-100 dark:bg-slate-800 p-4 rounded min-w-[250px] w-96 h-full">
-        <header class="flex justify-between content-center">
+    <article class="flex flex-col bg-slate-100 dark:bg-slate-800 p-4 rounded min-w-[300px] w-96 h-full">
+        <header class="flex flex-col">
+            <KanbanToolbar
+                :is-addable="true"
+                :is-movable="true"
+                @add="$emit('addTask', columnId)"
+            />
             <input
                 :value="title"
                 type="text"
@@ -25,7 +30,6 @@ function updateTitle(title: String) {
                 @keyup.enter="updateTitle(($event.target as HTMLInputElement).value)"
                 @blur="updateTitle(($event.target as HTMLInputElement).value)"
             >
-            <KanbanDragHandle />
         </header>
 
         <section class="flex flex-col gap-4 mt-8 grow">

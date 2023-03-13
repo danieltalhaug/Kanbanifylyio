@@ -10,6 +10,7 @@ const props = defineProps<{
 const emit = defineEmits<{
     (e: 'update:title', payload: String) : void,
     (e: 'addTask', payload: ID) : void,
+    (e: 'duplicateColumn', payload: ID) : void,
     (e: 'deleteColumn', payload: ID) : void,
 }>();
 
@@ -26,7 +27,9 @@ function updateTitle(title: String) {
                 :is-addable="true"
                 :is-movable="true"
                 :is-deletable="true"
+                :is-duplicatable="true"
                 @add="$emit('addTask', columnId)"
+                @duplicate="$emit('duplicateColumn', columnId)"
                 @delete="$emit('deleteColumn', columnId)"
             />
             <input

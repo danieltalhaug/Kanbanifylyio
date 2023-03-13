@@ -24,6 +24,17 @@ function addNewColumn() {
     columns.value.push(defaultColumn);
 }
 
+function doDuplicateColumn(columnId: ID) {
+    const duplicate = columns.value.find(col => col.id === columnId) as Column;
+    const index = (columns.value.findIndex(col => col.id === columnId)) + 1;
+
+    columns.value.splice(index, 0, {
+        ...duplicate,
+        id: nanoid(),
+        title: duplicate.title + ' (Copy)'
+    });
+}
+
 function doDeleteColumn(columnId: ID) {
     const index = columns.value.findIndex(col => col.id === columnId);
 
@@ -64,6 +75,7 @@ function addNewTask(columnId: String) {
                 :title="column.title"
                 :column-id="column.id"
                 @add-task="addNewTask"
+                @duplicate-column="doDuplicateColumn"
                 @delete-column="doDeleteColumn"
             >
                 <draggable

@@ -5,7 +5,7 @@ defineProps({
         type: Boolean,
         default: false,
     },
-    isAddable: {
+    isDuplicatable: {
         type: Boolean,
         default: false,
     },
@@ -19,7 +19,7 @@ defineProps({
     },
 });
 
-defineEmits(['add', 'toggle-expand', 'paint', 'copy', 'delete']);
+defineEmits(['add', 'toggle-expand', 'paint', 'duplicate', 'delete']);
 </script>
 
 <template>
@@ -35,6 +35,15 @@ defineEmits(['add', 'toggle-expand', 'paint', 'copy', 'delete']);
                 />
             </button>
                 stroke-width="2"
+            <button
+                v-if="isDuplicatable"
+                @click="$emit('duplicate')"
+            >
+                <IconCopy
+                    :size="20"
+                    stroke-width="2"
+                />
+            </button>
             <button
                 v-if="isDraggable"
                 class="drag-handle cursor-move"

@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import type { Task, ID } from '@/types'
+import { useKanbanTasks } from './composables/KanbanTasks';
 
 const props = defineProps<{
     task: Task,
+    columnId: ID,
 }>()
 
 const emit = defineEmits<{
@@ -11,12 +13,9 @@ const emit = defineEmits<{
 
 const isFocused = ref(false);
 
-function doDeleteTask() {
-    emit('delete', props.task.id)
-}
 onKeyStroke('Delete', () => {
     if(isFocused.value) {
-        doDeleteTask();
+        useKanbanTasks().doDeleteTask(props.columnId, props.task.id);
     }
 });
 </script>
@@ -32,7 +31,7 @@ onKeyStroke('Delete', () => {
             <KanbanToolbar
                 is-deletable
                 context="task"
-                @delete="doDeleteTask"
+                @delete="useKanbanTasks().doDeleteTask(columnId, task.id)"
                 
             />
             <h4 class="text-base truncate leading-9">

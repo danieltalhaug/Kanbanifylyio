@@ -71,7 +71,7 @@ const isAltActive = useKeyModifier('Alt');
                     <template #item="{element: task}: {element: Task}">
                         <KanbanTask
                             :task="task"
-                            @delete="column.tasks = column.tasks.filter(task => task.id !== $event)"
+                            :column-id="column.id"
                         />
                     </template>
                 </draggable>

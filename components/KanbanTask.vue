@@ -20,11 +20,11 @@ onKeyStroke('Delete', () => {
 <template>
     <div
         tabindex="0"
-        class="flex flex-col gap-2 bg-slate-900 dark:bg-slate-50 p-2 rounded w-full focus:shadow-2xl focus:shadow-purple-500 transition"
+        class="flex flex-col gap-2 bg-slate-900 dark:bg-slate-50 rounded w-full focus:shadow-2xl focus:shadow-purple-500 transition"
         @focus="isFocused = true"
         @blur="isFocused = false"
     >
-        <header class="flex flex-col">
+        <header class="flex flex-col gap-1 pt-[2px] px-[1px]">
             <KanbanToolbar
                 is-collapsable
                 :is-collapsed="isCollapsed"
@@ -33,12 +33,13 @@ onKeyStroke('Delete', () => {
                 @toggle-expand="isCollapsed = !isCollapsed"
                 @delete="useKanbanTasks().doDeleteTask(columnId, task.id)"
             />
-            <h4 class="text-base truncate leading-9">
-                {{ task.title }}
-            </h4>
+            <input
+                v-model="task.title"
+                class="mx-2 text-lg py-1 bg-transparent truncate text-slate-50 dark:text-slate-900 focus=border-2 focus:outline outline-2 outline-purple-500 rounded"
+            />
         </header>
         <section class="overflow-hidden">
-            <div :class="['transition-all', isCollapsed ? 'h-16' : 'h-0']">
+            <div :class="['transition-all', 'px-2', isCollapsed ? 'h-16' : 'h-0']">
                 Content Goes here :)
             </div>
         </section>

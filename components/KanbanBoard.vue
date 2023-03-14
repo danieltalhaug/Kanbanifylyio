@@ -8,6 +8,7 @@ import type { Column, Task, ID } from '~/types';
 import { Colors, kanbanColors } from './common/colors';
 import { IconPlus } from '@tabler/icons-vue';
 import KanbanColumn from './KanbanColumn.vue';
+import KanbanColumnEmptyState from './KanbanColumnEmptyState.vue';
 
 /**
  * Columns
@@ -90,7 +91,9 @@ function addNewTask(columnId: String) {
         </button>
     </header>
     <div class="flex min-h-[94%]">
+        <KanbanColumnEmptyState v-if="!columns.length" />
         <draggable
+            v-else
             v-model="columns"
             :animation="100"
             handle=".drag-handle"

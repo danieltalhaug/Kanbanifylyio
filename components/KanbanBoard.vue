@@ -1,6 +1,5 @@
 <script setup lang="ts">
 // Libs
-import { nanoid } from 'nanoid';
 import draggable from 'vuedraggable';
 
 // Components & Types
@@ -10,8 +9,8 @@ import KanbanColumn from './KanbanColumn.vue';
 import KanbanColumnEmptyState from './KanbanColumnEmptyState.vue';
 
 // Composables
-import { useKanbanColumns } from './composables/KanbanColumns.js';
-
+import { useKanbanColumns } from './composables/KanbanColumns';
+import { useKanbanTasks } from './composables/KanbanTasks';
 /**
  * Columns
  */
@@ -20,19 +19,8 @@ const { columns } = useKanbanColumns();
 /**
  * Tasks
  */
-// For enabling cloning of a task
+// For enabling cloning of task
 const isAltActive = useKeyModifier('Alt');
-
-function addNewTask(columnId: String) {
-    const column = columns.value.find(column => column.id === columnId);
-    const defaultTask: Task = {
-        id: nanoid(),
-        title: 'New task',
-        createdAt: new Date(),
-    }
-
-    column?.tasks.push(defaultTask);
-}
 </script>
 
 <template>
@@ -67,7 +55,7 @@ function addNewTask(columnId: String) {
                 :column-id="column.id"
                 :color="column.color"
                 :task-count="column.tasks.length"
-                @add-task="addNewTask"
+                @add-task="useKanbanTasks().doAddNewTask"
                 @duplicate-column="useKanbanColumns().doDuplicateColumn"
                 @change-column-color="useKanbanColumns().doChangeColumnColor"
                 @delete-column="useKanbanColumns().doDeleteColumn"

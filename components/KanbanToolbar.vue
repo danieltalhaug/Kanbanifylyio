@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import { IconChevronDown, IconPlus, IconX, IconCopy, IconPalette, IconDragDrop } from '@tabler/icons-vue';
 defineProps({
+    isCollapsable: {
+        type: Boolean,
+        default: false,
+    },
+    isCollapsed: {
+        type: Boolean,
+        default: false,
+    },
     isAddable: {
         type: Boolean,
         default: false,
@@ -37,6 +45,16 @@ defineEmits(['add', 'toggle-expand', 'change-color', 'duplicate', 'delete']);
     <div class="flex justify-between">
         <span>
             <button
+                v-if="isCollapsable"
+                @click="$emit('toggle-expand')"
+            >
+                <IconChevronDown
+                    :class="['transition', isCollapsed ? 'rotate-180' : '']"
+                    :size="20"
+                    stroke-width="2"
+                />
+            </button>
+            <button
                 v-if="isAddable"
                 :title="`Add new ${context}`"
                 @click="$emit('add')"
@@ -53,7 +71,7 @@ defineEmits(['add', 'toggle-expand', 'change-color', 'duplicate', 'delete']);
             >
                 <IconPalette
                     :size="20"
-                stroke-width="2"
+                    stroke-width="2"
                 />
             </button>
             <button

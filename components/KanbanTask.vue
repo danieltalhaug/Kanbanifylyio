@@ -7,10 +7,6 @@ const props = defineProps<{
     columnId: ID,
 }>()
 
-const emit = defineEmits<{
-    (e: 'delete', payload: ID) : void;
-}>();
-
 const isFocused = ref(false);
 
 onKeyStroke('Delete', () => {

@@ -11,11 +11,14 @@ const emit = defineEmits<{
 
 const isFocused = ref(false);
 
+function doDeleteTask() {
+    emit('delete', props.task.id)
+}
 onKeyStroke('Delete', () => {
     if(isFocused.value) {
-        emit('delete', props.task.id)
+        doDeleteTask();
     }
-})
+});
 </script>
 
 <template>
@@ -25,11 +28,16 @@ onKeyStroke('Delete', () => {
         @focus="isFocused = true"
         @blur="isFocused = false"
     >
-        <header class="flex justify-between">
+        <header class="flex flex-col">
+            <KanbanToolbar
+                is-deletable
+                context="task"
+                @delete="doDeleteTask"
+                
+            />
             <h4 class="text-base truncate leading-9">
                 {{ task.title }}
             </h4>
-            <KanbanDragHandle />
         </header>
     </div>
 </template>

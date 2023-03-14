@@ -4,59 +4,18 @@ import { nanoid } from 'nanoid';
 import draggable from 'vuedraggable';
 
 // Components & Types
-import type { Column, Task, ID } from '~/types';
-import { Colors, kanbanColors } from './common/colors';
+import type { Column, Task } from '~/types';
 import { IconPlus } from '@tabler/icons-vue';
 import KanbanColumn from './KanbanColumn.vue';
 import KanbanColumnEmptyState from './KanbanColumnEmptyState.vue';
 
+// Composables
+import { useKanbanColumns } from './composables/KanbanColumns.js';
+
 /**
  * Columns
  */
-// Columns data persisted in LocalStorage
-const columns = useLocalStorage<Column[]>('KanbanData', []);
-
-function addNewColumn() {
-    const defaultColumn: Column = {
-        id: nanoid(),
-        title: 'New column',
-        tasks: [],
-        color: kanbanColors[Colors.SLATE],
-    }
-
-    columns.value.push(defaultColumn);
-}
-
-function doDuplicateColumn(columnId: ID) {
-    const duplicate = columns.value.find(col => col.id === columnId) as Column;
-    const index = (columns.value.findIndex(col => col.id === columnId)) + 1;
-
-    columns.value.splice(index, 0, {
-        ...duplicate,
-        id: nanoid(),
-        title: duplicate.title + ' (Copy)'
-    });
-}
-
-function doChangeColumnColor(columnId: ID) {
-    const column = columns.value.find(col => col.id === columnId);
-    const columnColor = column?.color;
-    const columnColorIndex = kanbanColors.findIndex(color => color === columnColor);
-
-    if (column) {
-        if ((kanbanColors.length -1) === columnColorIndex) {
-            column.color = kanbanColors[0];
-        } else {
-            column.color = kanbanColors[columnColorIndex + 1];
-        }
-    }
-}
-
-function doDeleteColumn(columnId: ID) {
-    const index = columns.value.findIndex(col => col.id === columnId);
-
-    columns.value.splice(index, 1);
-}
+const { columns } = useKanbanColumns();
 
 /**
  * Tasks
@@ -80,7 +39,7 @@ function addNewTask(columnId: String) {
     <header class="flex justify-end p-4 border-b border-slate-500">
         <button
             class="flex gap-2 h-fit whitespace-nowrap"
-            @click="addNewColumn"
+            @click="useKanbanColumns().addNewColumn"
         >
             <IconPlus
                 class="self-center"
@@ -109,9 +68,9 @@ function addNewTask(columnId: String) {
                 :color="column.color"
                 :task-count="column.tasks.length"
                 @add-task="addNewTask"
-                @duplicate-column="doDuplicateColumn"
-                @change-column-color="doChangeColumnColor"
-                @delete-column="doDeleteColumn"
+                @duplicate-column="useKanbanColumns().doDuplicateColumn"
+                @change-column-color="useKanbanColumns().doChangeColumnColor"
+                @delete-column="useKanbanColumns().doDeleteColumn"
             >
                 <draggable
                     v-model="column.tasks"

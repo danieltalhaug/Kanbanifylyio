@@ -1,5 +1,4 @@
 <script setup lang="ts">
-const title: string = 'Kanban-ify-ly...io';
 const subtitles: string[] = [
     'With a side of sass',
     'Passive-Aggressive Productivity',
@@ -24,9 +23,9 @@ function getRandom(length: number) {
             <span class="flex flex-col items-center">
                 <h1 class="text-slate-900 dark:text-slate-50 text-8xl font-[Dongle] font-light leading-[0]">
                     <span>Kanban</span>
-                    <span class="text-6xl">ify</span>
-                    <span class="text-4xl">-ly</span>
-                    <span class="text-xl">...io</span>
+                    <span class="text-6xl text-purple-600 dark:text-purple-400">ify</span>
+                    <span class="text-4xl text-fuchsia-600 dark:text-fuchsia-400">-ly</span>
+                    <span class="text-xl text-rose-600 dark:text-rose-400">...io</span>
                 </h1>
                 <h2 class="text-slate-800 dark:text-slate-200 text-base">
                     ({{ subtitles[getRandom(subtitles.length)] }})

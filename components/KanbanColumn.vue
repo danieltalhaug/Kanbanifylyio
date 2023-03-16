@@ -37,11 +37,11 @@ const borderColor = computed(() => {
         <div class="column-content flex flex-col h-full">
             <header :class="['flex', 'flex-col', 'pt-1', 'px-1']">
                 <KanbanToolbar
-                    :is-addable="true"
-                    :is-movable="true"
-                    :is-deletable="true"
-                    :is-duplicatable="true"
-                    :is-paintable="true"
+                    is-addable
+                    is-movable
+                    is-deletable
+                    is-duplicatable
+                    is-paintable
                     context="column"
                     @add="$emit('addTask', columnId)"
                     @duplicate="$emit('duplicateColumn', columnId)"

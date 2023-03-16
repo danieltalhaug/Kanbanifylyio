@@ -41,8 +41,14 @@ onKeyStroke('Delete', () => {
                 />
             </header>
             <section class="overflow-hidden">
-                <div :class="['transition-all', 'px-2', isCollapsed ? 'h-16' : 'h-0']">
-                    Content Goes here :)
+                    <span class="flex flex-col">
+                        <textarea
+                            v-model="task.description"
+                            class="mt-1 text-base w-full h-20 bg-transparent focus=border-2 focus:outline outline-2 outline-purple-500 rounded resize-none"
+                            placeholder="Task description"
+                        >
+                        </textarea>
+                    </span>
                 </div>
             </section>
         </div>

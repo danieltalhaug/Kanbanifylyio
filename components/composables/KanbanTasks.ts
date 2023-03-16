@@ -11,6 +11,7 @@ export function useKanbanTasks() {
             id: nanoid(),
             title: 'New task',
             createdAt: new Date(),
+            description: '',
         }
 
         column?.tasks.push(defaultTask);

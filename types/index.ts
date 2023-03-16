@@ -13,4 +13,5 @@ export interface Task {
     id: ID,
     title: String,
     createdAt: Date,
+    description: string,
 }

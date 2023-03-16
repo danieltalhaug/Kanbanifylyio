@@ -20,34 +20,43 @@ onKeyStroke('Delete', () => {
 <template>
     <div
         tabindex="0"
-        class="flex flex-col gap-2 bg-slate-900 dark:bg-slate-50 rounded w-full focus:shadow-2xl focus:shadow-purple-500 transition"
+        class="task flex flex-col gap-2 bg-slate-900 dark:bg-slate-50 rounded w-full focus:shadow-2xl focus:shadow-purple-500 transition m-h-[86px]"
         @focus="isFocused = true"
         @blur="isFocused = false"
     >
-        <header class="flex flex-col gap-1 pt-[2px] px-[1px]">
-            <KanbanToolbar
-                is-collapsable
-                :is-collapsed="isCollapsed"
-                is-deletable
-                context="task"
-                @toggle-expand="isCollapsed = !isCollapsed"
-                @delete="useKanbanTasks().doDeleteTask(columnId, task.id)"
-            />
-            <input
-                v-model="task.title"
-                class="mx-2 text-lg py-1 bg-transparent truncate text-slate-50 dark:text-slate-900 focus=border-2 focus:outline outline-2 outline-purple-500 rounded"
-            />
-        </header>
-        <section class="overflow-hidden">
-            <div :class="['transition-all', 'px-2', isCollapsed ? 'h-16' : 'h-0']">
-                Content Goes here :)
-            </div>
-        </section>
+        <Placeholder :styling="['hidden','w-full', 'h-[86px]','rounded']" />
+        <div class="task-content z-10">
+            <header class="flex flex-col gap-1 pt-[2px] px-[1px] mb-2">
+                <KanbanToolbar
+                    is-collapsable
+                    :is-collapsed="isCollapsed"
+                    is-deletable
+                    context="task"
+                    @toggle-expand="isCollapsed = !isCollapsed"
+                    @delete="useKanbanTasks().doDeleteTask(columnId, task.id)"
+                />
+                <input
+                    v-model="task.title"
+                    class="mx-2 text-lg py-1 bg-transparent truncate text-slate-50 dark:text-slate-900 focus=border-2 focus:outline outline-2 outline-purple-500 rounded"
+                />
+            </header>
+            <section class="overflow-hidden">
+                <div :class="['transition-all', 'px-2', isCollapsed ? 'h-16' : 'h-0']">
+                    Content Goes here :)
+                </div>
+            </section>
+        </div>
     </div>
 </template>
 
 <style scoped>
 .sortable-ghost {
-    @apply bg-slate-100 dark:bg-slate-800 border-2 border-slate-500 border-dashed;
+    @apply bg-slate-100 dark:bg-slate-900;
+}
+.sortable-ghost .placeholder {
+    @apply block;
+}
+.sortable-ghost .task-content {
+    @apply hidden;
 }
 </style>

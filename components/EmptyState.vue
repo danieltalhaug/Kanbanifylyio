@@ -12,11 +12,11 @@ defineProps({
 </script>
 
 <template>
-    <section class="flex flex-col gap-2 text-center">
-        <figure class="mb-2">
+    <section class="flex flex-col text-center">
+        <figure class="mb-4">
             <slot name="figure" />
         </figure>
-        <h3 class="text-2xl text-slate-800 dark:text-slate-100">
+        <h3 class="text-5xl text-slate-800 dark:text-slate-100 font-[Dongle]">
             {{ title }}
         </h3>
         <p class="text-base text-slate-600 dark:text-slate-400">

@@ -15,6 +15,18 @@ onKeyStroke('Delete', () => {
         useKanbanTasks().doDeleteTask(props.columnId, props.task.id);
     }
 });
+
+function formatDate(date: Date): string {
+    const createdAt = new Date(date);
+    const options = {
+        day: 'numeric',
+        year: 'numeric',
+        month: 'short',
+        weekday: 'long'
+    }
+
+    return createdAt.toLocaleDateString('en-US', options);
+}
 </script>
 
 <template>
@@ -41,6 +53,7 @@ onKeyStroke('Delete', () => {
                 />
             </header>
             <section class="overflow-hidden">
+                <div :class="['transition-all', 'px-2', isCollapsed ? 'h-32' : 'h-0']">
                     <span class="flex flex-col">
                         <textarea
                             v-model="task.description"
@@ -49,6 +62,9 @@ onKeyStroke('Delete', () => {
                         >
                         </textarea>
                     </span>
+                    <p class="text-slate-500 text-sm mt-2">
+                        Created: {{ formatDate(task.createdAt) }}
+                    </p>
                 </div>
             </section>
         </div>

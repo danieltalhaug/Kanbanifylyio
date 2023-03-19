@@ -46,6 +46,7 @@ defineEmits(['add', 'toggle-expand', 'change-color', 'duplicate', 'delete']);
         <span>
             <button
                 v-if="isCollapsable"
+                :title="isCollapsed ? 'Close task content' : 'Open task content'"
                 @click="$emit('toggle-expand')"
             >
                 <IconChevronDown

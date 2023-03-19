@@ -57,7 +57,7 @@ defineEmits(['add', 'toggle-expand', 'change-color', 'duplicate', 'delete']);
             </button>
             <button
                 v-if="isAddable"
-                :title="`Add new ${context}`"
+                :title="`Add new task to column`"
                 @click="$emit('add')"
             >
                 <IconPlus

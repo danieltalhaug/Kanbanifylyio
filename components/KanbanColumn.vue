@@ -70,7 +70,7 @@ const borderColor = computed(() => {
                 <slot />
             </section>
     
-            <footer class="self-end">
+            <footer class="self-end py-4">
                 <button
                     class="flex gap-2 justify-center"
                     @click="$emit('addTask', columnId)"

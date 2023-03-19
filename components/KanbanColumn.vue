@@ -31,7 +31,7 @@ const borderColor = computed(() => {
 </script>
 
 <template>
-    <article class="column min-w-[300px] w-96 border-r border-slate-400 border-solid dark:border-slate-700 h-full">
+    <article class="column min-w-[300px] w-96 border-r border-slate-400 border-solid dark:border-slate-500 h-full">
         <Placeholder :styling="['hidden', 'w-full', 'h-full', 'border', 'border-dashed', 'border-slate-500']" />
 
         <div class="column-content flex flex-col h-full">

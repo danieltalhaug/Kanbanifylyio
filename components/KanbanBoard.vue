@@ -24,7 +24,7 @@ const isAltActive = useKeyModifier('Alt');
 </script>
 
 <template>
-    <header class="flex justify-end p-4 border-b border-slate-500">
+    <header class="flex justify-end p-4 border-b border-slate-400 dark:border-slate-500">
         <button
             class="flex gap-2 h-fit whitespace-nowrap"
             @click="useKanbanColumns().addNewColumn"

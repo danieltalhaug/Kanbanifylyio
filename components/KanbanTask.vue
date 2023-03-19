@@ -37,7 +37,7 @@ const borderColor = computed(() => {
 <template>
     <div
         tabindex="0"
-        :class="['task', 'flex', 'flex-col', 'gap-2', 'bg-slate-900', 'dark:bg-slate-50', 'w-full', 'rounded', 'overflow-hidden', 'focus:shadow-2xl', 'focus:shadow-purple-500', 'transition', 'm-h-[86px]']"
+        :class="['task', 'flex', 'flex-col', 'gap-2', 'bg-slate-900', 'dark:bg-slate-50', 'w-full', 'rounded', 'focus:ring-2', 'ring-purple-500', 'overflow-hidden', 'transition', 'm-h-[86px]']"
         @focus="isFocused = true"
         @blur="isFocused = false"
     >

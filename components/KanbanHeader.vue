@@ -20,7 +20,7 @@ function getRandom(length: number) {
     <header class="relative flex flex-col gap-1 relative h-48">
         <Placeholder :styling="['absolute', 'inset-0', 'w-full', 'h-full', 'border-b', 'border-solid', 'border-slate-500']" />
         <div class="absolute inset-0 flex justify-center items-center">
-            <span class="flex flex-col items-center">
+            <span class="flex flex-col items-center bg-slate-100 dark:bg-slate-900 px-16 py-8 rounded-lg border border-slate-500">
                 <h1 class="text-slate-900 dark:text-slate-50 text-8xl font-[Dongle] font-light leading-[0]">
                     <span>Kanban</span>
                     <span class="text-6xl text-purple-600 dark:text-purple-400">ify</span>

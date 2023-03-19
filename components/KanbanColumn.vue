@@ -32,7 +32,7 @@ const borderColor = computed(() => {
 
 <template>
     <article class="column min-w-[300px] w-96 border-x border-slate-200 border-dotted dark:border-slate-700 h-full">
-        <Placeholder :styling="['hidden', 'w-full', 'h-full']" />
+        <Placeholder :styling="['hidden', 'w-full', 'h-full', 'border', 'border-dashed', 'border-slate-500']" />
 
         <div class="column-content flex flex-col h-full">
             <header :class="['flex', 'flex-col', 'pt-1', 'px-1']">

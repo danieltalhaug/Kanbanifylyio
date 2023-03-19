@@ -8,7 +8,7 @@ defineProps({
 </script>
 
 <template>
-    <div :class="['placeholder', styling, 'overflow-hidden', 'border', 'border-dashed', 'border-slate-500']">
+    <div :class="['placeholder', styling, 'overflow-hidden']">
         <svg class="inset-0 h-full w-full stroke-slate-400 dark:stroke-slate-600" fill="none">
             <defs>
                 <pattern id="pattern-510798f3-74a4-4150-a0cf-4e93e8f4fbdf" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">

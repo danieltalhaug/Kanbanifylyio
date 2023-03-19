@@ -47,7 +47,7 @@ onMounted(() => {
                 <Placeholder
                     v-for="(n, i) in 3"
                     :key="i"
-                    :styling="['w-20', 'h-60', 'rounded']"
+                    :styling="['w-20', 'h-60', 'rounded', 'border', 'border-dashed', 'border-slate-500']"
                 />
             </div>
         </template>

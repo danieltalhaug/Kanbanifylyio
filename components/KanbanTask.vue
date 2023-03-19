@@ -41,7 +41,7 @@ const borderColor = computed(() => {
         @focus="isFocused = true"
         @blur="isFocused = false"
     >
-        <Placeholder :styling="['hidden','w-full', 'h-[86px]','rounded']" />
+        <Placeholder :styling="['hidden','w-full', 'h-[86px]','rounded', 'border', 'border-dashed', 'border-slate-500']" />
         <div class="task-content z-10">
             <header class="flex flex-col gap-1 pt-[2px] px-[1px] mb-2">
                 <KanbanToolbar

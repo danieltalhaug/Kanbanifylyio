@@ -76,6 +76,7 @@ const borderColor = computed(() => {
                     @click="$emit('addTask', columnId)"
                 >
                     <IconPlus
+                        class="self-center"
                         :size="20"
                         stroke-width="2"
                     />

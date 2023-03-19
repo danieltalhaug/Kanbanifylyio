@@ -40,11 +40,13 @@ function formatDate(date: Date): string {
         <div class="task-content z-10">
             <header class="flex flex-col gap-1 pt-[2px] px-[1px] mb-2">
                 <KanbanToolbar
+                    is-duplicatable
                     is-collapsable
                     :is-collapsed="isCollapsed"
                     is-deletable
                     context="task"
                     @toggle-expand="isCollapsed = !isCollapsed"
+                    @duplicate="useKanbanTasks().doDuplicateTask(columnId, task.id)"
                     @delete="useKanbanTasks().doDeleteTask(columnId, task.id)"
                 />
                 <input

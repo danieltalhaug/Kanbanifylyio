@@ -37,12 +37,12 @@ const borderColor = computed(() => {
 <template>
     <div
         tabindex="0"
-        :class="['task', 'flex', 'flex-col', 'gap-2', 'bg-slate-900', 'dark:bg-slate-50', 'rounded', 'w-full', 'focus:shadow-2xl', 'focus:shadow-purple-500', 'transition', 'm-h-[86px]', 'border-solid', 'border-l-4', borderColor]"
+        :class="['task', 'flex', 'flex-col', 'gap-2', 'bg-slate-900', 'dark:bg-slate-50', 'w-full', 'rounded', 'overflow-hidden', 'focus:shadow-2xl', 'focus:shadow-purple-500', 'transition', 'm-h-[86px]']"
         @focus="isFocused = true"
         @blur="isFocused = false"
     >
         <Placeholder :styling="['hidden','w-full', 'h-[86px]','rounded', 'border', 'border-dashed', 'border-slate-500']" />
-        <div class="task-content z-10">
+        <div :class="['task-content', 'border-solid', 'border-l-8', borderColor]">
             <header class="flex flex-col gap-1 pt-[2px] px-[1px] mb-2">
                 <KanbanToolbar
                     is-duplicatable

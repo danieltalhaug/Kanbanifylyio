@@ -72,6 +72,7 @@ const isAltActive = useKeyModifier('Alt');
                         <KanbanTask
                             :task="task"
                             :column-id="column.id"
+                            :color="task.color"
                         />
                     </template>
                 </draggable>

@@ -14,4 +14,5 @@ export interface Task {
     title: String,
     createdAt: Date,
     description: string,
+    color: Color,
 }

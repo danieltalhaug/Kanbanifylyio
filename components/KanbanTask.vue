@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import type { Task, ID } from '@/types'
+import type { Task, ID, Color } from '@/types'
 import { useKanbanTasks } from './composables/KanbanTasks';
 
 const props = defineProps<{
     task: Task,
     columnId: ID,
+    color: Color,
 }>()
 
 const isFocused = ref(false);
@@ -27,12 +28,16 @@ function formatDate(date: Date): string {
 
     return createdAt.toLocaleDateString('en-US', options);
 }
+
+const borderColor = computed(() => {
+    return `border-${props.color}-500`;
+});
 </script>
 
 <template>
     <div
         tabindex="0"
-        class="task flex flex-col gap-2 bg-slate-900 dark:bg-slate-50 rounded w-full focus:shadow-2xl focus:shadow-purple-500 transition m-h-[86px]"
+        :class="['task', 'flex', 'flex-col', 'gap-2', 'bg-slate-900', 'dark:bg-slate-50', 'rounded', 'w-full', 'focus:shadow-2xl', 'focus:shadow-purple-500', 'transition', 'm-h-[86px]', 'border-solid', 'border-l-4', borderColor]"
         @focus="isFocused = true"
         @blur="isFocused = false"
     >
@@ -43,10 +48,12 @@ function formatDate(date: Date): string {
                     is-duplicatable
                     is-collapsable
                     :is-collapsed="isCollapsed"
+                    is-paintable
                     is-deletable
                     context="task"
                     @toggle-expand="isCollapsed = !isCollapsed"
                     @duplicate="useKanbanTasks().doDuplicateTask(columnId, task.id)"
+                    @change-color="useKanbanTasks().doChangeTaskColor(columnId, task.id)"
                     @delete="useKanbanTasks().doDeleteTask(columnId, task.id)"
                 />
                 <input
